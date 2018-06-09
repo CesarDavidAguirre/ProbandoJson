@@ -111,6 +111,8 @@ public class MainActivity extends AppCompatActivity {
 */
     }
 
+    //probando git
+
     public void aBoton (View view){
         EditText entrada = (EditText) findViewById(R.id.entrada);
         String url = url1+"?usr="+ entrada.getText().toString();
