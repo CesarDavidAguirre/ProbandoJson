@@ -13,6 +13,6 @@ public class Login extends AppCompatActivity {
 
     }
     public void logearte (View view){
-        
+
     }
 }
