@@ -1,6 +1,7 @@
 package com.example.cesaraguirre.probandojson;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -36,6 +37,8 @@ public class Login extends AppCompatActivity {
     public void logearte (View view){
         final EditText usuario = findViewById(R.id.txb_usuario);
         final EditText pass = findViewById(R.id.tbx_password);
+        usuario.setEnabled(false);
+        pass.setEnabled(false);
         progressBar.setVisibility(View.VISIBLE);
         String compleUrl = url + usuario.getText() + "&pass=" + pass.getText();
         RequestQueue res = Volley.newRequestQueue(this);
@@ -50,21 +53,27 @@ public class Login extends AppCompatActivity {
                             Toast.makeText(context,"Error Vuelva a Intentar",Toast.LENGTH_SHORT).show();
                             usuario.setText("");
                             pass.setText("");
-                            progressBar.setVisibility(View.INVISIBLE);
+
                         }else {
                             Toast.makeText(context,"Logueado",Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(context , MainActivity.class);
+                            intent.putExtra("TOKEN",repuesta);
+                            usuario.setText("");
+                            pass.setText("");
+                            progressBar.setVisibility(View.INVISIBLE);
+                            startActivity(intent);
                         }
                     }else {
                         Toast.makeText(context,"Usuario o Contraseña Incorrectas",Toast.LENGTH_SHORT).show();
-                        usuario.setText("");
-                        pass.setText("");
-                        progressBar.setVisibility(View.INVISIBLE);
                     }
 
                 }
                 catch (JSONException e) {
                     e.printStackTrace();
                 }
+                usuario.setEnabled(true);
+                pass.setEnabled(true);
+                progressBar.setVisibility(View.INVISIBLE);
             }
         },new Response.ErrorListener() {
             @Override

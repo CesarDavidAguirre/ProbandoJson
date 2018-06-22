@@ -36,79 +36,11 @@ public class MainActivity extends AppCompatActivity {
     private RequestQueue res;
     private String url1 = "https://lawebdecesar.000webhostapp.com/probando/prob3.php";
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
-  //      String json = getJSON("https://lawebdecesar.000webhostapp.com/probando/prob3.php");
-   //     TextView label = (TextView) findViewById(R.id.label);
-   //     if (json != null){
-    //        label.setText(json);
-     //   }
-   /*     try {
-            probando();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        final TextView mTextView = (TextView) findViewById(R.id.text);
-        // ...
-
-        // Instantiate the RequestQueue.
-                RequestQueue queue = Volley.newRequestQueue(this);
-                String url ="http://www.google.com";
-
-        // Request a string response from the provided URL.
-                StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                        new Response.Listener<String>() {
-                            @Override
-                            public void onResponse(String response) {
-                                // Display the first 500 characters of the response string.
-                                mTextView.setText("Response is: "+ response.substring(0,500));
-                            }
-                        }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        mTextView.setText("That didn't work!");
-                    }
-                });
-
-        // Add the request to the RequestQueue.
-        queue.add(stringRequest);
-
-    }
-
-
-
-    public void probando () throws IOException {
-  //      ConnectivityManager connMgr = (ConnectivityManager)
-  //              getSystemService(Context.CONNECTIVITY_SERVICE);
-  //      NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-   //     if (networkInfo != null && networkInfo.isConnected()) {
-            // Operaciones http
-
-        URL url = new URL("https://lawebdecesar.000webhostapp.com/probando/prob3.php");
-        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-        urlConnection.connect();
-        InputStream stream = urlConnection.getInputStream();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
-        StringBuffer buffer = new StringBuffer();
-        String line = "";
-        TextView label = (TextView) findViewById(R.id.label);
-        label.setText(buffer.toString());
-      /*  try {
-            InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-        }
-            // Acciones a realizar con el flujo de datos}
-        finally{
-                urlConnection.disconnect();
-            }
-        }
-*/
     }
 
     //probando git
@@ -146,47 +78,5 @@ public class MainActivity extends AppCompatActivity {
         });
         res.add(jsonObjectRequest);
     }
-
-
-    public static String getJSON(String url) {
-        HttpsURLConnection con = null;
-        try {
-            URL u = new URL(url);
-            con = (HttpsURLConnection) u.openConnection();
-
-            con.connect();
-
-
-            BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream()));
-            StringBuilder sb = new StringBuilder();
-            String line;
-            while ((line = br.readLine()) != null) {
-                sb.append(line + "\n");
-            }
-            br.close();
-            return sb.toString();
-
-
-        } catch (MalformedURLException ex) {
-            ex.printStackTrace();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        } finally {
-            if (con != null) {
-                try {
-                    con.disconnect();
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-            }
-        }
-        return null;
-    }
-
-
-
-    // intento nuevo
-
-
 
 }
