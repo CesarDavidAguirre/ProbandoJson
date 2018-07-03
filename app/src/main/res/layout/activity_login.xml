@@ -51,13 +51,12 @@
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="82dp"
+        android:layout_marginBottom="89dp"
+
+        android:onClick="logearte"
         app:cardBackgroundColor="@color/btn_login"
         app:cardCornerRadius="25dp"
-        app:cardElevation="20dp"
-        android:onClick="logearte"
-
-        >
+        app:cardElevation="20dp">
 
         <RelativeLayout
             android:layout_width="match_parent"

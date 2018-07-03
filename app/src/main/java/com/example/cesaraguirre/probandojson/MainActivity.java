@@ -34,7 +34,7 @@ import javax.net.ssl.HttpsURLConnection;
 public class MainActivity extends AppCompatActivity {
 
     private RequestQueue res;
-    private String url1 = "https://lawebdecesar.000webhostapp.com/probando/prob3.php";
+    private String url = "https://lawebdecesar.000webhostapp.com/probando/prob3.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
     //probando git
 
-    public void aBoton (View view){
+   /* public void aBoton (View view){
         EditText entrada = (EditText) findViewById(R.id.entrada);
         String url = url1+"?usr="+ entrada.getText().toString();
         final TextView txtShowTextResult1 = (TextView) findViewById(R.id.label);
@@ -78,5 +78,5 @@ public class MainActivity extends AppCompatActivity {
         });
         res.add(jsonObjectRequest);
     }
-
+*/
 }
