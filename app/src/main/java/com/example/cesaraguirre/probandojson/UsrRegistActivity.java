@@ -16,6 +16,7 @@ public class UsrRegistActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_usr_regist);
+        progressBar = findViewById(R.id.progressBarReg);
     }
 
 

@@ -84,5 +84,9 @@ public class Login extends AppCompatActivity {
         });
         res.add(jsonObjectRequest);
     }
+    public void buttonRegistrar (View view){
+        Intent intent = new Intent(this,UsrRegistActivity.class);
+        startActivity(intent);
+    }
 
 }

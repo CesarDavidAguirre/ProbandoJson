@@ -11,22 +11,23 @@
         android:id="@+id/newUser"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="230dp"
+        android:layout_centerInParent="true"
         android:backgroundTint="@android:color/white"
         android:ems="10"
         android:hint="Nick/Usuario"
         android:inputType="textPersonName"
+        android:textColor="@android:color/white"
         android:textColorHint="@android:color/white" />
 
     <ProgressBar
-        android:id="@+id/progressBar"
+        android:id="@+id/progressBarReg"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/newUser"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="204dp"
+        android:visibility="invisible" />
 
     <EditText
         android:id="@+id/newContra"
@@ -34,11 +35,26 @@
         android:layout_height="40dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="195dp"
+        android:layout_marginBottom="210dp"
         android:backgroundTint="@android:color/white"
         android:ems="10"
         android:hint="Contraseña"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
+        android:textColor="@android:color/white"
+        android:textColorHint="@android:color/white" />
+
+    <EditText
+        android:id="@+id/confContra"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="149dp"
+        android:backgroundTint="@android:color/white"
+        android:ems="10"
+        android:hint="Confirme Su Contraseña"
+        android:inputType="textPassword"
+        android:textColor="@android:color/white"
         android:textColorHint="@android:color/white" />
 
     <android.support.v7.widget.CardView
@@ -46,7 +62,7 @@
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="71dp"
+        android:layout_marginBottom="67dp"
         app:cardBackgroundColor="@color/btn_login"
         app:cardCornerRadius="25dp"
         app:cardElevation="20dp">
@@ -61,7 +77,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="19dp"
+                android:layout_marginTop="16dp"
                 android:text="@string/Registrar"
                 android:textColor="@android:color/white" />
 
@@ -76,5 +92,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginEnd="46dp"
         android:layout_marginTop="37dp"
-        app:srcCompat="@raw/addChef" />
+        app:srcCompat="@raw/addchef"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="46dp" />
 </RelativeLayout>
