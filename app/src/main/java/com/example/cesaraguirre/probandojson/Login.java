@@ -24,7 +24,6 @@ import org.json.JSONObject;
 
 public class Login extends AppCompatActivity {
     private String url = "https://lawebdecesar.000webhostapp.com/probando/logUsr.php?usr=";
-    public String token_usuario;
     private ProgressBar progressBar;
     private Context context;
     @Override

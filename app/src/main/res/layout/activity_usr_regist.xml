@@ -65,7 +65,8 @@
         android:layout_marginBottom="67dp"
         app:cardBackgroundColor="@color/btn_login"
         app:cardCornerRadius="25dp"
-        app:cardElevation="20dp">
+        app:cardElevation="20dp"
+        android:onClick="probando">
 
         <RelativeLayout
             android:layout_width="match_parent"
