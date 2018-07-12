@@ -2,6 +2,7 @@ package com.example.cesaraguirre.probandojson;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.net.ConnectivityManagerCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -17,14 +18,23 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.cesaraguirre.probandojson.retrofit.BackgroundSincrono;
+import com.example.cesaraguirre.probandojson.retrofit.MyApiAdapter;
+import com.example.cesaraguirre.probandojson.retrofit.io.ResponceError;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+
 public class UsrRegistActivity extends AppCompatActivity {
 
     private String urlExt = "https://lawebdecesar.000webhostapp.com/probando/extUsr.php?usr=";
-    private String urlExtID = "https://lawebdecesar.000webhostapp.com/probando/extUsr.php?IDusr=";
+    private String urlExtID = "https://lawebdecesar.000webhostapp.com/probando/extIDUsr.php?IDusr=";
     private String token_usuario;
     private ProgressBar progressBar;
     private Context context;
@@ -48,6 +58,61 @@ public class UsrRegistActivity extends AppCompatActivity {
         }
         return token;
     }
+    boolean paso = false;
+
+    public void prob (View view) throws InterruptedException {
+         EditText newusr = findViewById(R.id.newUser);
+
+         //Call<ResponceError> call =MyApiAdapter.getApiService().getIdExist(newusr.getText().toString());
+
+
+      /*   try {
+             Call<ResponceError> call = MyApiAdapter.getApiService().getIdExist(newusr.getText().toString());
+             ResponceError error = call.execute().body();
+
+             if (error.isError()){
+                 Toast.makeText(context,"True",Toast.LENGTH_LONG).show();
+             }else{
+                 Toast.makeText(context,"False",Toast.LENGTH_LONG).show();
+             }
+             paso = true;
+
+         }catch (IOException e){
+            e.printStackTrace();
+         }
+         */
+        consulta1 = false;
+        Intent intent = new Intent(this, BackgroundSincrono.class);
+        intent.putExtra("nombre",newusr.getText().toString());
+        startService(intent);
+
+
+
+             Toast.makeText(context, "paso", Toast.LENGTH_LONG).show();
+           // call.enqueue(new ErrorCallbak());
+
+
+    }
+    class ErrorCallbak implements Callback<ResponceError> {
+
+        @Override
+        public void onResponse(Call<ResponceError> call, retrofit2.Response<ResponceError> response) {
+            if (response.isSuccessful()){
+                ResponceError error = response.body();
+                if (error.isError()){
+                    Toast.makeText(context,"True",Toast.LENGTH_LONG).show();
+                }else{
+                    Toast.makeText(context,"False",Toast.LENGTH_LONG).show();
+                }
+                paso = true;
+            }
+        }
+
+        @Override
+        public void onFailure(Call<ResponceError> call, Throwable t) {
+            Toast.makeText(context,"error",Toast.LENGTH_LONG).show();
+        }
+    }
 
     public void probando (View view) throws InterruptedException {
         token_usuario = crearToken();
@@ -61,9 +126,7 @@ public class UsrRegistActivity extends AppCompatActivity {
         }
         existeidToken(token_usuario);
         existeUsuario(newusr.getText().toString());
-        while (!consulta1 && !consulta2){
-
-        }
+        Thread.sleep(5000);
         if (error || error2){
             pass1.setText("");
             pass2.setText("");
