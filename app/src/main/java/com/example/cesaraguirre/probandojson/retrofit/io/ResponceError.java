@@ -2,20 +2,20 @@ package com.example.cesaraguirre.probandojson.retrofit.io;
 
 public class ResponceError {
 
-    private boolean error;
+    private int error;
 
     public ResponceError() {
     }
 
-    public ResponceError(boolean error) {
+    public ResponceError(int error) {
         this.error = error;
     }
 
-    public boolean isError() {
+    public int isError() {
         return error;
     }
 
-    public void setError(boolean error) {
+    public void setError(int error) {
         this.error = error;
     }
 

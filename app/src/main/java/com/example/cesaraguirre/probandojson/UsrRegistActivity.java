@@ -35,7 +35,7 @@ public class UsrRegistActivity extends AppCompatActivity {
 
     private String urlExt = "https://lawebdecesar.000webhostapp.com/probando/extUsr.php?usr=";
     private String urlExtID = "https://lawebdecesar.000webhostapp.com/probando/extIDUsr.php?IDusr=";
-    private String token_usuario;
+    private String token_usuario, usrNew , passNew;
     private ProgressBar progressBar;
     private Context context;
     public boolean consulta1 , consulta2;
@@ -80,7 +80,7 @@ public class UsrRegistActivity extends AppCompatActivity {
          }catch (IOException e){
             e.printStackTrace();
          }
-         */
+
         consulta1 = false;
         Intent intent = new Intent(this, BackgroundSincrono.class);
         intent.putExtra("nombre",newusr.getText().toString());
@@ -90,6 +90,7 @@ public class UsrRegistActivity extends AppCompatActivity {
 
              Toast.makeText(context, "paso", Toast.LENGTH_LONG).show();
            // call.enqueue(new ErrorCallbak());
+ */
 
 
     }
@@ -99,7 +100,7 @@ public class UsrRegistActivity extends AppCompatActivity {
         public void onResponse(Call<ResponceError> call, retrofit2.Response<ResponceError> response) {
             if (response.isSuccessful()){
                 ResponceError error = response.body();
-                if (error.isError()){
+                if (error.isError() == 0){
                     Toast.makeText(context,"True",Toast.LENGTH_LONG).show();
                 }else{
                     Toast.makeText(context,"False",Toast.LENGTH_LONG).show();
@@ -115,8 +116,6 @@ public class UsrRegistActivity extends AppCompatActivity {
     }
 
     public void probando (View view) throws InterruptedException {
-        token_usuario = crearToken();
-        Toast.makeText(this,token_usuario,Toast.LENGTH_SHORT).show();
         EditText pass1 = findViewById(R.id.newContra);
         EditText pass2 = findViewById(R.id.confContra);
         EditText newusr = findViewById(R.id.newUser);
@@ -124,7 +123,10 @@ public class UsrRegistActivity extends AppCompatActivity {
             Toast.makeText(this, "Contraseñas No Coinciden", Toast.LENGTH_SHORT).show();
             return;
         }
-        existeidToken(token_usuario);
+        passNew = pass1.getText().toString();
+        usrNew = newusr.getText().toString();
+        regUsr();
+       /* existeidToken(token_usuario);
         existeUsuario(newusr.getText().toString());
         Thread.sleep(5000);
         if (error || error2){
@@ -146,7 +148,54 @@ public class UsrRegistActivity extends AppCompatActivity {
                 Thread.sleep(1000);
             }
         }
-        Toast.makeText(this,"Se Creo Usuario",Toast.LENGTH_LONG).show();
+        */
+
+      //  Call<ResponceError> call =MyApiAdapter.getApiService().getRegUsr(newusr.getText().toString());
+
+        //Toast.makeText(this,"Se Creo Usuario",Toast.LENGTH_LONG).show();
+
+    }
+    public void regUsr (){
+        token_usuario = crearToken();
+       // token_usuario = probtoken();
+        Call<ResponceError> call =MyApiAdapter.getApiService().getRegUsr(passNew,token_usuario,usrNew);
+        call.enqueue(new Callback<ResponceError>() {
+            @Override
+            public void onResponse(Call<ResponceError> call, retrofit2.Response<ResponceError> response) {
+                if (response.isSuccessful()) {
+                    ResponceError respuesta = response.body();
+                    switch (respuesta.isError()) {
+                        case 0:
+                            Toast.makeText(context,"Se Registro usuario",Toast.LENGTH_LONG).show();
+                            break;
+                        case 1:
+                            regUsr();
+                            break;
+                        case 2:
+                            Toast.makeText(context,"Usuario Existente",Toast.LENGTH_LONG).show();
+                            break;
+                        case 3:
+                            Toast.makeText(context,"ERROR: Vuelva a Intentar Mas Tarde",Toast.LENGTH_LONG).show();
+                            break;
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponceError> call, Throwable t) {
+                Toast.makeText(context,"ERROR: Vuelva a Intentar",Toast.LENGTH_LONG).show();
+            }
+        });
+
+    }
+    int cont =0;
+    public String probtoken (){
+        if (cont == 3){
+            cont = 0;
+            return "abcdefg";
+        }
+        cont ++;
+        return "aaaaa";
     }
 
     public void existeUsuario (String usuario){

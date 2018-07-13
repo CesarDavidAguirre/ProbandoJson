@@ -17,7 +17,10 @@
         android:hint="Nick/Usuario"
         android:inputType="textPersonName"
         android:textColor="@android:color/white"
-        android:textColorHint="@android:color/white" />
+        android:textColorHint="@android:color/white"
+        android:digits="abcdefghijklmnopqrstuvwxyz1234567890"
+        android:singleLine="true"
+        />
 
     <ProgressBar
         android:id="@+id/progressBarReg"
@@ -39,7 +42,7 @@
         android:backgroundTint="@android:color/white"
         android:ems="10"
         android:hint="Contraseña"
-        android:inputType="textPassword"
+        android:inputType="numberPassword"
         android:textColor="@android:color/white"
         android:textColorHint="@android:color/white" />
 
@@ -53,7 +56,7 @@
         android:backgroundTint="@android:color/white"
         android:ems="10"
         android:hint="Confirme Su Contraseña"
-        android:inputType="textPassword"
+        android:inputType="numberPassword"
         android:textColor="@android:color/white"
         android:textColorHint="@android:color/white" />
 
@@ -66,7 +69,7 @@
         app:cardBackgroundColor="@color/btn_login"
         app:cardCornerRadius="25dp"
         app:cardElevation="20dp"
-        android:onClick="prob">
+        android:onClick="probando">
 
         <RelativeLayout
             android:layout_width="match_parent"

@@ -28,7 +28,7 @@ public class BackgroundSincrono extends IntentService {
             Call<ResponceError> call = MyApiAdapter.getApiService().getIdExist(intent.getStringExtra("nombre"));
             ResponceError error = call.execute().body();
 
-            if (error.isError()){
+            if (error.isError() == 0){
 
 
             }else{
