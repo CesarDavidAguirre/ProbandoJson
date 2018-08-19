@@ -55,7 +55,7 @@ public class Login extends AppCompatActivity {
 
                         }else {
                             Toast.makeText(context,"Logueado",Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(context , MainActivity.class);
+                            Intent intent = new Intent(context , PrincipalActivity.class);
                             intent.putExtra("TOKEN",repuesta);
                             usuario.setText("");
                             pass.setText("");
